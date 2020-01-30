@@ -1,0 +1,65 @@
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+#include "$ABSCORROOT/share/jobOptions_AbsCor.txt"
+//#include "$RHOPIALGROOT/share/jobOptions_Rhopi.txt"
+//#include "/workfs/bes/zhouxp/boss664p1/workarea/test/test-00-00-80/RhopiAlg/RhopiAlg-00-00-23/share/jobOptions_Rhopi.txt"
+#include "/besfs/users/lify/workarea/mywork/test2/test-00-00-80/RhopiAlg/RhopiAlg-00-00-23/share/jobOptions_Rhopi.txt"
+
+
+// Input REC or DST file name 
+//below is data dir
+//EventCnvSvc.digiRootInputFile = {"/besfs2/offline/data/664-1/jpsi/dst/120427/run_0027625_All_file012_SFO-1.dst"};
+
+
+//below is MC dir
+
+EventCnvSvc.digiRootInputFile = {"/besfs2/offline/data/664-1/jpsi/12mc/dst/jpsi2012_stream001_run28233_file9.dst"};
+
+
+//below is signalMC
+
+
+/*
+EventCnvSvc.digiRootInputFile = 
+{
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0000.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0001.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0002.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0003.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0004.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0005.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0006.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0007.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0008.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0009.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0010.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0011.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0012.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0013.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0014.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0015.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0016.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0017.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0018.dst",
+"/scratchfs/bes/lify/664p01/dst/mumu/mumu_0019.dst"
+};
+
+*/
+
+
+
+//signal MC
+//EventCnvSvc.digiRootInputFile = {"jpsimumu.dst"};
+
+// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 5;
+
+// Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 10000;
+//ApplicationMgr.EvtMax = 500000;
+
+ApplicationMgr.HistogramPersistency = "ROOT";
+NTupleSvc.Output = { "FILE1 DATAFILE='test.root' OPT='NEW' TYP='ROOT'"};
+				
+Rhopi.OutputFileName="/afs/ihep.ac.cn/users/l/lify/besfs/workarea/mywork/test2/test-00-00-80/run/mytest.root";

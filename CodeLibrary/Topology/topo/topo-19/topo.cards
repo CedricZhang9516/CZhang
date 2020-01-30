@@ -1,0 +1,25 @@
+#do not change the order of the following string
+
+#tree name
+#dtag
+mc
+
+#root file name
+#/ihepbatch/bes/dusx/common/topo/topo_psip23pi.root
+#/afs/ihep.ac.cn/users/l/liy/wpi0topo/topo/omegapi0topo.root
+#/workfs/bes/dusx/work702p01/Ds2Ae35/DoubleTag/round35.root
+mcmade.root
+
+INCLUSIVE PARTICLE
+
+-3122
+
+TOPO START
+#pi+ pi- pi0
+0 100443 -1
+1 111 0
+2 -211 0
+3 211 0
+4 22 1
+5 22 1
+

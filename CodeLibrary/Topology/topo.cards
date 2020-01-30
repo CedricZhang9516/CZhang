@@ -1,0 +1,44 @@
+#do not change the order of the following string
+################################
+##  put your tree name below  ##
+################################
+TreeRes
+#tree
+#TreeAna
+#TMCTruth
+
+##################################
+##  put your path & file below  ##
+##################################
+
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/G3Pi2K2/sigmc/sigmc/09/ana_101.root
+#/afs/ihep.ac.cn/users/l/longyf/store/f1/sigmc/ana_101.root
+#/afs/ihep.ac.cn/users/l/longyf/store/f2/sigmc/ana_101.root
+
+  #### InclusiveMC
+/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/G3Pi2K2/analysis/output_inclusivemc_g3pi2k2.root
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/G4Pi2K2/analysis/output_inclusivemc_g4pi2k2.root
+
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/P2Pi2/sigmc/09/ana_101.root
+
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/G4Pi4K2/analysis/output_inclusivemc.root
+
+#/afs/ihep.ac.cn/users/l/longyf/store/Omega2G/sigmc/output_sigmc_09.root
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/OmegaPhiPi0/inclusivemc/output_inclusivemc_no_cuts_on_m2k.root
+#/afs/ihep.ac.cn/users/l/longyf/store/Omega3PiK/inclusivemc/output_inclusivemc_09_flag1.root
+
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/G3Pi2K2/analysis/output_eff_co_g3pi2k2.root
+
+#/afs/ihep.ac.cn/users/l/longyf/workarea/workarea664/run/G4Pi2K2/analysis/output_eff_co_g4pi2k2.root
+
+########################################
+## "0" will ignore as a string below  ##
+########################################
+#TOPO START USE Cut 1
+TOPO START USE Cut 0
+
+######################################
+##  put your cut as a string below  ##
+######################################
+#mode_63==63&&mode2==14&&deltaE_63>-0.030000&&deltaE_63<0.020000&&(m_PipPim>0.52||m_PipPim<0.48)&&(m_P_SgmPim>1.12||m_P_SgmPim<1.11)&&(mBC_63>2.278000&&mBC_63<2.294000)
+#mode_63==63&&mode2==14&&deltaE_63>-0.030000&&deltaE_63<0.020000&&mBC_63>2.278000&&mBC_63<2.294000

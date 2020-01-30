@@ -1,0 +1,6 @@
+#Do topology and get pdf
+
+./topology
+cd ./lig
+./start 
+
