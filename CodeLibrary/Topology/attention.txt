@@ -1,7 +1,0 @@
-Pay attention to topo.cards
-./topology 
-./lig/start
-
-all ./start
-
-When define new particle, pay attention to particle.table and ./lig/top.py

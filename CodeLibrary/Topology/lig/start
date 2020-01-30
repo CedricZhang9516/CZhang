@@ -1,6 +1,0 @@
-#Start to deal with MC Truth.
-
-cp ../mclist.txt ./
-python top.py
-make
-gv notice.ps&

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cd /besfs/users/lify/Analysis/RhopiAlg/RhopiAlg-00-00-23/run
-#boss.exe jobOptions_sim.txt
-#boss.exe jobOptions_rec.txt
-boss.exe jobOptions_ana_rhopi.txt
-
