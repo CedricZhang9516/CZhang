@@ -31,7 +31,7 @@ Author: Cedric Zhang
 ///////////////////////////////////////////////////////////////////////////
 
 void CZhang(){}
-
+/*
 void splitCanvas(){
 
   TCanvas *c1 = new TCanvas("c1","Example 2 pads (20,80)",200,10,300,500);
@@ -51,7 +51,7 @@ void ReplaceString(){
 
 //From $ROOTSYS/tutorials/hist/h1draw.C
 //// 1-D histogram drawing options
-
+*/
 
 
 void CopyTree(){

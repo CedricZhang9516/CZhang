@@ -1,27 +1,5 @@
-#ifndef _CZhang
-#define _CZhang
 
-#include <iostream>
-#include <fstream>
-#include <cmath>
-#include <array>
-#include <vector>
-#include <time.h>
-#include <stdlib.h>
-
-#include <TH1.h>
-#include <TH1F.h>
-#include <TF1.h>
-#include <TLatex.h>
-#include <TList.h>
-#include <TLegend.h>
-#include <TCanvas.h>
-#include <TAxis.h>
-#include <TStyle.h>
-#include <TGraph.h>
-
-
-#include <PhysConstant.h>
+#include "CZhangNew.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /*
@@ -33,31 +11,62 @@ Author: Cedric Zhang
 */
 ///////////////////////////////////////////////////////////////////////////
 
-void CZhangNew(){
+
+
+
+
+void CZhangNew_Tutorial(){
 
 /* Default TGraph, THistrogram settings shoule be put here */
-  //TCanvas * c = NewTCanvas("c","c",100,100,1,2);
-  //c->cd(1);
-  //c->SaveAs("test.png");
-  cout<<"???"<<endl;
 
-  TCanvas * c2 = new TCanvas("c2","c2",100,100)
+
+
+
+  TCanvas * c = NewTCanvas("c","c",1000,1000,1,4);
+
+  TString name = "NameCanvasOrHistogram";
+  SaveTCanvas(c,name); // save to .C and .png
+
+
+  TString nameVar[3] = {"E","TOF","ErrTOF"};
+
+  TTree * t = TxtToTree(
+    "/Users/zhangce/WorkArea/Mu1S2S/DataHydroIon/ana-20191122-tof/Data_TOF.txt",
+    nameVar,3,10);
+
+  TGraph * g = TreeToTGraph(t,"E","TOF");
+  c->cd(1);
+  g->SetTitle("TOF vs. E; E [MeV];  TOF [us]");
+  g->Draw("APL*");
+
+  c->cd(2);
+  TGraphErrors * g2 = TreeToTGraphErrors(t,"E","TOF","ErrTOF");
+  g2->Draw("APL*");
+
+  c->cd(3);
+  TH1F * hTOF = TreeToTH1F(t,"TOF",100,0,50);
+  hTOF->Draw("");
+
+  c->cd(4);
+  TH1F * hE = TreeToTH1F(t,"E",100,0,50);
+  hE->Draw("");
+
+  SaveTH1(hE,"E"); // save to .C and .png
+
+
+
+
 
 }
 
 
-TCanvas * NewTCanvas(string name, string title, int widthX, int widthY, int splitX, int splitY ){
+void CZhangNew(){
 
-  TCanvas * c = new TCanvas(name.data(),title.data(),widthX,widthY);
-  c->Divide(splitX,splitY);
-  return c;
+  CZhangNew_Tutorial();
+
+  //std::Vector<TH1F*> HistCollection;
+
 
 }
 
 
-
-
-
-
-
-#endif
