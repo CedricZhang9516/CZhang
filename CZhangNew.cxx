@@ -66,6 +66,8 @@ void CZhangNew(){
 
   //std::Vector<TH1F*> HistCollection;
 
+  gROOT->ProcessLine("new TBrowser");
+
 
 }
 
