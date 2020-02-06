@@ -11,7 +11,16 @@
 
 #include <TH1.h>
 #include <TH1F.h>
+#include <TH2F.h>
+#include <TTree.h>
 #include <TF1.h>
+#include <TCut.h>
+#include <TFile.h>
+#include <TSystem.h>
+#include <TVector3.h>
+#include <TRandom.h>
+#include <TGraphErrors.h>
+#include <TGraph.h>
 #include <TLatex.h>
 #include <TList.h>
 #include <TLegend.h>
@@ -66,6 +75,8 @@ void SaveTH1(TH1* c, TString name, TString path = "./"){
 
 
 
+
+
 void TGraphStyle(TGraph* gP, TString title = ""){
 
   //gP->Draw("APL*");
@@ -73,6 +84,9 @@ void TGraphStyle(TGraph* gP, TString title = ""){
   gP->SetMarkerStyle(20);
   gP->SetMarkerSize(0.3);
   gP->SetMarkerColor(1);
+
+  gP->SetLineStyle(4);
+  gP->SetLineWidth(4);
 
   //gP->SetTitle("Polarization vs. DecayZ; DecayZ [mm]; Polarization");
   gP->SetTitle(title.Data());
@@ -227,8 +241,109 @@ TTree* TxtToTree(TString nameFile, TString nameVar[], const int Nvar, const int 
 
 
 
+/////// STILL ON WORKING
+
+void DrawTLegend(TH1F* h1,TH1F* h2,TH1F* h3){
+
+  TLegend * l = new TLegend(0.4,0.6,0.8,0.8);
+  l->AddEntry(h1,"signal region","L");
+  l->AddEntry(h2,"first region","L");
+  l->AddEntry(h3,"last region","L");
+  l->Draw();
+
+}
+
+void SetOptStat(TString option = "mr"){
+
+  //gStyle->SetOptStat("mr");
+  gStyle->SetOptStat(option.Data());
+  //gStyle->SetOptStat("mr");
+
+}
+
+//////////////////////////
+
+/*
+
+https://root.cern.ch/doc/master/classTStyle.html
+https://root.cern.ch/doc/master/classTPaveStats.html
+https://root.cern.ch/doc/master/classTStyle.html#a0ae6f6044b6d7a32756d7e98bb210d6c
+
+The type of information printed in the histogram statistics box can be selected via the parameter mode.
+
+The parameter mode can be = ksiourmen
+
+k = 1; kurtosis printed
+k = 2; kurtosis and kurtosis error printed
+s = 1; skewness printed
+s = 2; skewness and skewness error printed
+i = 1; integral of bins printed
+i = 2; integral of bins with option "width" printed
+o = 1; number of overflows printed
+u = 1; number of underflows printed
+r = 1; rms printed
+r = 2; rms and rms error printed
+m = 1; mean value printed
+m = 2; mean and mean error values printed
+e = 1; number of entries printed
+n = 1; name of histogram is printed
+Example: gStyle->SetOptStat(11); print only name of histogram and number of entries. gStyle->SetOptStat(1101); displays the name of histogram, mean value and RMS.
+
+Notes:
+never call SetOptStat(000111); but SetOptStat(1111), 0001111 will be taken as an octal number !!
+SetOptStat(1) is s shortcut allowing to set the most common case, and is taken as SetOptStat(1111) (for backward compatibility with older versions. If you want to print only the name of the histogram call SetOptStat(1000000001).
+that in case of 2-D histograms, when selecting just underflow (10000) or overflow (100000), the stats box will show all combinations of underflow/overflows and not just one single number!
+
+*/
+
+//////////////////////////
+
+void SetPalette(int N = 55){
+
+  gStyle->SetPalette(55);// kRainBow, tranditional
+  //gStyle->SetPalette(56);// kInvertedDarkBodyRadiator, 0 is white
+  //gStyle->SetPalette(57);// kBird, default
+
+  // See: https://root.cern.ch/doc/master/classTColor.html#C05
+
+}
+
+void ProcessLineInRoot(){
+  gROOT->ProcessLine("new TBrowser");
+}
+
+void UpdateTCanvasOline(){
 
 
+  TH2D * hXY2D = new TH2D("hXY2D","hXY2D",100,2,3,100,2,3);
+
+  TCanvas * c = NewTCanvas("c","c",1000,1000,2,3);
+  c->cd(1);
+
+  while(true){
+
+    hXY2D->FillRandom("x*x+y*y",1000);
+    hXY2D->Draw("colz");
+    c->Modified();
+    c->Update();
+    //c_intrnl->SaveAs(Form("./png/%i.png",i));
+    gSystem->ProcessEvents();
+    gSystem->Sleep(100);
+    //if (gSystem->ProcessEvents()) break;
+  }
+
+
+  /// SEE https://root-forum.cern.ch/t/online-histogram-update-through-macro/17819/1
+  /////// https://root.cern.ch/graphics-pad
+
+
+}
+
+void ResetROOT(){
+  gROOT->Reset();
+  //Resetting the interpreter (erasing variables etc):
+
+}
 
 
 #endif

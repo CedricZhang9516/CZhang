@@ -296,7 +296,7 @@ std::vector<TH1F*> CreateVecH1F( const int Nhis, string name[], string title[], 
   return H1F;
 
 }
-
+/*
 void copytree3()
 {
    // Get old file, old tree and set top branch address
@@ -327,6 +327,7 @@ void copytree3()
    newtree->Print();
    newfile.Write();
 }
+*/
 
 void copytree2()
 {
