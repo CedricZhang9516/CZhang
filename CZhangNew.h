@@ -31,6 +31,7 @@
 
 
 #include "PhysConstant.h"
+#include "PhysConstant.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /*
@@ -43,7 +44,10 @@ Author: Cedric Zhang
 ///////////////////////////////////////////////////////////////////////////
 
 
-TCanvas * NewTCanvas(TString name, TString title, int widthX, int widthY, int splitX, int splitY ){
+#define name2str(name) (#name)
+
+
+TCanvas * NewTCanvas(TString name, TString title, int widthX, int widthY, int splitX = 1, int splitY = 1 ){
 
   TCanvas * c = new TCanvas(name.Data(),title.Data(),widthX,widthY);
   c->Divide(splitX,splitY);
@@ -127,6 +131,8 @@ void TH2Style(TH2*h, TString title = "", int c = 1){
 
 }
 
+
+
 TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, TCut cut = ""){
 
   //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
@@ -138,8 +144,9 @@ TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, 
 
   //TH1F* htemp = (TH1F*)gPad->GetPrimitive("htemp");
   TH1F * h = (TH1F*)gDirectory->Get(("h_"+nameBranch).Data());
-
   TH1Style(h,nameBranch.Data());
+
+  delete gDirectory->Get("c1");
 
   return h;
 
@@ -167,6 +174,36 @@ TH2F * TreeToTH2F(TTree* t, TString nameBranch,
   return h;
 
 }
+
+
+/*
+////// 3D is not suported in ROOT, see https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7
+
+TH3F * TreeToTH3F(TTree* t, TString nameBranch,
+  int binX, int startX, int endX,
+  int binY, int startY, int endY,
+  int binZ, int startZ, int endZ,
+  TCut cut = ""){
+
+  //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
+
+  t->Draw(
+    Form(" %s >> %s (%i,%i,%i,%i,%i,%i,%i,%i,%i) ", nameBranch.Data(), ("h_"+nameBranch).Data(),
+      binX, startX, endX,
+      binY, startY, endY,
+      binZ, startZ, endZ),
+      cut);
+
+  //TH1F* htemp = (TH1F*)gPad->GetPrimitive("htemp");
+  TH3F * h = (TH3F*)gDirectory->Get(("h_"+nameBranch).Data());
+
+  TH3Style(h,nameBranch.Data());
+
+  return h;
+
+}
+*/
+
 
 TGraph * TreeToTGraph(TTree* t, TString nameBranchX, TString nameBranchY, TString titleGraph =  ""){
 
@@ -345,6 +382,15 @@ void ResetROOT(){
 
 }
 
+void SetRootSaveDirectory(){
 
+  ///////////// How to save the file in the typical directory
+  TCanvas * c = new TCanvas();
+  TH2F * hZY2D;
+  TString filename = "TestRootFile";
+  gROOT->ProcessLine(Form(".!mkdir %s",filename.Data()));
+  SaveTCanvas(c,(filename+"/"+hZY2D->GetName()).Data());
+
+}
 #endif
 
