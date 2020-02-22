@@ -64,6 +64,9 @@ void SaveTCanvas(TCanvas* c, TString name, TString path = "./"){
   name.ReplaceAll(".C",".png");
   c->SaveAs( (path+name).Data() );
 
+  name.ReplaceAll(".png",".root");
+  c->SaveAs( (path+name).Data() );
+
 }
 
 
@@ -270,6 +273,7 @@ TTree* TxtToTree(TString nameFile, TString nameVar[], const int Nvar, const int 
   for( int i = 0; i < Nline; i++ ){
     for(int j = 0; j <Nvar; j++)ReadTXT>>var[j];
     t->Fill();
+
   }
 
   return t;
@@ -390,6 +394,10 @@ void SetRootSaveDirectory(){
   TString filename = "TestRootFile";
   gROOT->ProcessLine(Form(".!mkdir %s",filename.Data()));
   SaveTCanvas(c,(filename+"/"+hZY2D->GetName()).Data());
+
+  //IF necessary:
+  //filename.ReplaceAll(".dat.txt","");
+  //SaveTCanvas(c,(filename+"/"+filename).Data());
 
 }
 #endif
