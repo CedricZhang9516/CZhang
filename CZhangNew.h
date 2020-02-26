@@ -273,6 +273,7 @@ TTree* TxtToTree(TString nameFile, TString nameVar[], const int Nvar, const int 
   for( int i = 0; i < Nline; i++ ){
     for(int j = 0; j <Nvar; j++)ReadTXT>>var[j];
     t->Fill();
+    //cout<<var[0]<<endl;
 
   }
 
