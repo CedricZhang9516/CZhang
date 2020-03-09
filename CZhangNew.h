@@ -80,6 +80,15 @@ void SaveTH1(TH1* c, TString name, TString path = "./"){
 
 }
 
+void SaveTH2(TH2* c, TString name, TString path = "./"){
+
+  name.Append(".C");
+  c->SaveAs( (path+name).Data() );
+
+  name.ReplaceAll(".C",".png");
+  c->SaveAs( (path+name).Data() );
+
+}
 
 
 
@@ -139,17 +148,21 @@ void TH2Style(TH2*h, TString title = "", int c = 1){
 TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, TCut cut = ""){
 
   //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
+  TString name = nameBranch;
+  name.ReplaceAll("(","_");
+  name.ReplaceAll(")","_");
 
   t->Draw(
-    Form(" %s >> %s (%i,%i,%i) ", nameBranch.Data(), ("h_"+nameBranch).Data(),  bin, startX, endX),
+    Form(" %s >> %s (%i,%i,%i) ", nameBranch.Data(), ("h_"+name).Data(),  bin, startX, endX),
     cut
     );
 
   //TH1F* htemp = (TH1F*)gPad->GetPrimitive("htemp");
-  TH1F * h = (TH1F*)gDirectory->Get(("h_"+nameBranch).Data());
-  TH1Style(h,nameBranch.Data());
+  TH1F * h = (TH1F*)gDirectory->Get(("h_"+name).Data());
 
-  delete gDirectory->Get("c1");
+  TH1Style(h,name.Data());
+
+  //delete gDirectory->Get("c1");
 
   return h;
 
@@ -162,17 +175,23 @@ TH2F * TreeToTH2F(TTree* t, TString nameBranch,
   TCut cut = ""){
 
   //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
+  TString name = nameBranch;
+  name.ReplaceAll("(","_");
+  name.ReplaceAll(")","_");
 
   t->Draw(
-    Form(" %s >> %s (%i,%i,%i,%i,%i,%i) ", nameBranch.Data(), ("h_"+nameBranch).Data(),
+    Form(" %s >> %s (%i,%i,%i,%i,%i,%i) ", nameBranch.Data(), ("h_"+name).Data(),
       binX, startX, endX,
       binY, startY, endY),
       cut);
 
   //TH1F* htemp = (TH1F*)gPad->GetPrimitive("htemp");
-  TH2F * h = (TH2F*)gDirectory->Get(("h_"+nameBranch).Data());
 
-  TH2Style(h,nameBranch.Data());
+  TH2F * h = (TH2F*)gDirectory->Get(("h_"+name).Data());
+
+  TH2Style(h,name.Data());
+
+  //delete gDirectory->Get("c1");
 
   return h;
 
@@ -273,7 +292,7 @@ TTree* TxtToTree(TString nameFile, TString nameVar[], const int Nvar, const int 
   for( int i = 0; i < Nline; i++ ){
     for(int j = 0; j <Nvar; j++)ReadTXT>>var[j];
     t->Fill();
-    //cout<<var[0]<<endl;
+    //cout<<var[Nvar-1]<<endl;
 
   }
 
@@ -300,6 +319,8 @@ void SetOptStat(TString option = "mr"){
   //gStyle->SetOptStat("mr");
   gStyle->SetOptStat(option.Data());
   //gStyle->SetOptStat("mr");
+
+  //SetOptStat("0000");
 
 }
 
