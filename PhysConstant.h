@@ -27,7 +27,10 @@ static const int    NTS = 4096*2;//number of time sampling
 //static const string rawtree = "rawtree";
 //#define NCH_V1720 8
 
-double light = 299792458; // m/s
-double massMu = 106.16; // MeV/c2
+//double light = 299792458; // m/s
+//double massMu = 106.16; // MeV/c2
+
+static const double light = 299792458; // m/s
+static const double massMu = 106.16/light/light; // MeV/c2
 
 #endif
