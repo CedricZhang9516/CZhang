@@ -110,6 +110,16 @@ void TGraphStyle(TGraph* gP, TString title = ""){
   gP->GetXaxis()->SetTitleSize(0.06);
   gP->GetXaxis()->SetTitleOffset(0.8);
 
+/*
+  g1->SetMarkerColor(kRed);
+  g1->SetLineColor(kRed);
+  g1->SetLineStyle(1);
+  g1->SetLineWidth(1);
+  g1->GetYaxis()->SetRangeUser(0,100);
+  g1->Draw("APL*");
+*/
+
+
 }
 
 
@@ -144,7 +154,8 @@ void TH2Style(TH2*h, TString title = "", int c = 1){
 
 
 
-TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, TCut cut = ""){
+TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, TCut cut = "",
+  TString Name = ""){
 
   //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
   TString name = nameBranch;
@@ -160,6 +171,9 @@ TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, 
   TH1F * h = (TH1F*)gDirectory->Get(("h_"+name).Data());
 
   TH1Style(h,name.Data());
+
+  if(Name == "")Name = nameBranch;
+  h->SetName(Name.Data());
 
   //delete gDirectory->Get("c1");
 
