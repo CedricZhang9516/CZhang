@@ -89,7 +89,19 @@ void SaveTH2(TH2* c, TString name, TString path = "./"){
 
 }
 
+void TGraphStyle2(TGraphErrors *g1, TString title = ""){
 
+  g1->SetTitle(title.Data());
+  g1->SetMarkerColor(1);//g1->SetMarkerColor(kRed);
+  g1->SetLineColor(1);//g1->SetLineColor(kRed);
+  g1->SetLineStyle(1);
+  g1->SetLineWidth(2);
+  g1->SetMarkerStyle(20);
+  g1->SetMarkerSize(0.8);
+
+  //g1->Draw("APL*");
+
+}
 
 
 void TGraphStyle(TGraph* gP, TString title = ""){
@@ -109,6 +121,8 @@ void TGraphStyle(TGraph* gP, TString title = ""){
   gP->GetYaxis()->SetTitleSize(0.06);
   gP->GetXaxis()->SetTitleSize(0.06);
   gP->GetXaxis()->SetTitleOffset(0.8);
+
+
 
 /*
   g1->SetMarkerColor(kRed);
