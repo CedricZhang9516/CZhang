@@ -1,15 +1,11 @@
 #!/bin/bash
 
-k=1
-i=0
-m=0
-p=1
 
-while [ "$i" != "2" ]
-do 
-    m=$(($i+$p))
-    echo $(( $m * 2 ))
-    cat data_all.txt| tail -n +$p | head -n $m >>$m.txt
+i=100
+
+while [ "$i" != "500" ]
+do
+    cat "bsub /home/had/zhangce/G-2Statistics/run_all.sh $i" >>sub_all.sh
     i=$(($i+1))
 done
 

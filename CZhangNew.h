@@ -168,16 +168,17 @@ void TH2Style(TH2*h, TString title = "", int c = 1){
 
 
 
-TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, TCut cut = "",
+TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, double startX, double endX, TCut cut = "",
   TString Name = ""){
 
   //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
   TString name = nameBranch;
   name.ReplaceAll("(","_");
   name.ReplaceAll(")","_");
+  name.ReplaceAll("/","_");
 
   t->Draw(
-    Form(" %s >> %s (%i,%i,%i) ", nameBranch.Data(), ("h_"+name).Data(),  bin, startX, endX),
+    Form(" %s >> %s (%i,%f,%f) ", nameBranch.Data(), ("h_"+name).Data(),  bin, startX, endX),
     cut
     );
 
@@ -197,17 +198,18 @@ TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, int startX, int endX, 
 
 
 TH2F * TreeToTH2F(TTree* t, TString nameBranch,
-  int binX, int startX, int endX,
-  int binY, int startY, int endY,
+  int binX, double startX, double endX,
+  int binY, double startY, double endY,
   TCut cut = ""){
 
   //t->Draw("SpinX>>hspinx(1e3,-1,1)",Form("DecayZ<(%i+1) && DecayZ>%i",i,i),"");
   TString name = nameBranch;
   name.ReplaceAll("(","_");
   name.ReplaceAll(")","_");
+  name.ReplaceAll("/","_");
 
   t->Draw(
-    Form(" %s >> %s (%i,%i,%i,%i,%i,%i) ", nameBranch.Data(), ("h_"+name).Data(),
+    Form(" %s >> %s (%i,%f,%f,%i,%f,%f) ", nameBranch.Data(), ("h_"+name).Data(),
       binX, startX, endX,
       binY, startY, endY),
       cut);
