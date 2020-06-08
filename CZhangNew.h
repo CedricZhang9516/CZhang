@@ -451,10 +451,14 @@ void SetRootSaveDirectory(){
 
 }
 
+
+/*
 void SetXTitleTreeDraw(const char * title){
   TH1D *htemp = (TH1D*)gPad->GetPrimitive("htemp");
   htemp->GetXaxis()->SetTitle(title);
   gPad->Update();
 }
+*/
+
 #endif
 
