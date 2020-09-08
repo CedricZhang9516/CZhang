@@ -141,12 +141,18 @@ void TGraphStyle(TGraph* gP, TString title = ""){
 void TH1Style(TH1*h, TString title = "", int c = 1){
 
   //gP->Draw("APL*");
-  h->SetFillColor(c);
-  h->SetFillStyle(3001);
+  //h->SetFillColor(c);
+  //h->SetFillStyle(3001);
   h->SetLineColor(c);
+  h->SetLineWidth(2);
   h->SetMarkerColor(1);
   h->SetMarkerSize(0.5);
   h->SetMarkerStyle(20);
+
+  h->GetYaxis()->SetTitleOffset(0.58);
+  h->GetYaxis()->SetTitleSize(0.06);
+  h->GetXaxis()->SetTitleSize(0.06);
+  h->GetXaxis()->SetTitleOffset(0.8);
 
   h->SetTitle(title.Data());
 
@@ -156,12 +162,17 @@ void TH1Style(TH1*h, TString title = "", int c = 1){
 void TH2Style(TH2*h, TString title = "", int c = 1){
 
   //gP->Draw("APL*");
-  h->SetFillColor(c);
-  h->SetFillStyle(3001);
+  //h->SetFillColor(c);
+  //h->SetFillStyle(3001);
   h->SetLineColor(c);
   h->SetMarkerColor(1);
   h->SetMarkerSize(0.5);
   h->SetMarkerStyle(20);
+
+  h->GetYaxis()->SetTitleOffset(0.58);
+  h->GetYaxis()->SetTitleSize(0.06);
+  h->GetXaxis()->SetTitleSize(0.06);
+  h->GetXaxis()->SetTitleOffset(0.8);
 
   h->SetTitle(title.Data());
 
@@ -299,6 +310,8 @@ TGraphErrors * TreeToTGraphErrors(TTree* t, TString nameBranchX, TString nameBra
     t->GetEntry(i);
     g->SetPoint(i,varX,varY);
     g->SetPointError(i,0,varErrY);
+
+    //cout<<varX<<" "<<varY<<endl;
   }
 
   TGraphStyle(g,nameBranchY.Data());
