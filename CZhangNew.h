@@ -46,6 +46,7 @@ Author: Cedric Zhang
 
 #define name2str(name) (#name)
 
+void CZhangNew(){}
 
 TCanvas * NewTCanvas(TString name, TString title, int widthX, int widthY, int splitX = 1, int splitY = 1 ){
 
@@ -137,6 +138,38 @@ void TGraphStyle(TGraph* gP, TString title = ""){
 
 }
 
+void TProfileStyle(TProfile* gP, int c = 1, TString title = ""){
+
+  //gP->Draw("APL*");
+  gP->SetLineColor(c);
+  //gP->SetMarkerStyle(20);
+  //gP->SetMarkerSize(0.3);
+  gP->SetMarkerColor(c);
+
+  //gP->SetLineStyle(4);
+  //gP->SetLineWidth(4);
+
+  //gP->SetTitle("Polarization vs. DecayZ; DecayZ [mm]; Polarization");
+  //gP->SetTitle(title.Data());
+  gP->GetYaxis()->SetTitleOffset(0.58);
+  gP->GetYaxis()->SetTitleSize(0.06);
+  gP->GetXaxis()->SetTitleSize(0.06);
+  gP->GetXaxis()->SetTitleOffset(0.8);
+
+
+
+/*
+  g1->SetMarkerColor(kRed);
+  g1->SetLineColor(kRed);
+  g1->SetLineStyle(1);
+  g1->SetLineWidth(1);
+  g1->GetYaxis()->SetRangeUser(0,100);
+  g1->Draw("APL*");
+*/
+
+
+}
+
 
 void TH1Style(TH1*h, TString title = "", int c = 1){
 
@@ -158,6 +191,37 @@ void TH1Style(TH1*h, TString title = "", int c = 1){
 
 }
 
+void TH1Style1(TH1 *h, Int_t c = 1){
+  h->SetFillColor(c);
+  h->SetFillStyle(3003);
+  //h->SetLineWidth(4);
+  h->SetLineColor(c);
+  //h->SetMarkerStyle(14);
+  h->SetMarkerColor(1);
+  h->SetMarkerSize(0.5);
+  h->SetMarkerStyle(20);
+
+  //h->SetTitleSize(3);
+  //gStyle->SetTitleFontSize(0.08);
+
+  h->GetXaxis()->SetNdivisions(505);
+  h->GetYaxis()->SetTitleOffset(0.4);
+  h->SetTitleSize(0.06);
+  h->GetYaxis()->SetTitleSize(0.06);
+  h->GetXaxis()->SetTitleSize(0.06);
+  h->GetXaxis()->SetTitleOffset(0.8);
+
+/*
+  h->GetYaxis()->SetTitleOffset(0.5);
+  h->GetYaxis()->SetTitleSize(0.07);
+  h->GetYaxis()->SetLabelSize(0.05);
+
+  //h->GetXaxis()->SetTitleOffset(0.5);
+  h->GetXaxis()->SetTitleOffset(0.7);
+  h->GetXaxis()->SetTitleSize(0.065);
+  h->GetXaxis()->SetLabelSize(0.05);
+*/
+}
 
 void TH2Style(TH2*h, TString title = "", int c = 1){
 
