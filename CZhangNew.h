@@ -12,6 +12,7 @@
 #include <TH1.h>
 #include <TH1F.h>
 #include <TH2F.h>
+#include <TProfile.h>
 #include <TTree.h>
 #include <TF1.h>
 #include <TCut.h>
