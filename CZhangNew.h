@@ -142,7 +142,7 @@ void TH1Style(TH1*h, TString title = "", int c = 1){
 
   //gP->Draw("APL*");
   h->SetFillColor(c);
-  h->SetFillStyle(3001);
+  h->SetFillStyle(3003);
   h->SetLineColor(c);
   h->SetMarkerColor(1);
   h->SetMarkerSize(0.5);
@@ -192,6 +192,7 @@ TH1F * TreeToTH1F(TTree* t, TString nameBranch,  int bin, double startX, double 
   h->SetName(Name.Data());
 
   //delete gDirectory->Get("c1");
+  delete gDirectory->Get("htemp");
 
   return h;
 
@@ -320,9 +321,8 @@ TTree* TxtToTree(TString nameFile, TString nameVar[], const int Nvar, const int 
   for(int i = 0; i< Nvar; i++)t->Branch(nameVar[i].Data(),&var[i],Form("%s/D",nameVar[i].Data()) );
 
   for( int i = 0; i < Nline; i++ ){
-    for(int j = 0; j <Nvar; j++)ReadTXT>>var[j];
+    for(int j = 0; j <Nvar; j++){ReadTXT>>var[j]; }
     t->Fill();
-    //cout<<var[Nvar-1]<<endl;
 
   }
 
@@ -454,13 +454,13 @@ void SetRootSaveDirectory(){
 }
 
 
-/*
+
 void SetXTitleTreeDraw(const char * title){
   TH1D *htemp = (TH1D*)gPad->GetPrimitive("htemp");
   htemp->GetXaxis()->SetTitle(title);
   gPad->Update();
 }
-*/
+
 
 #endif
 
