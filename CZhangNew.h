@@ -112,11 +112,11 @@ void TGraphStyle(TGraph* gP, TString title = ""){
   //gP->Draw("APL*");
   gP->SetLineColor(1);
   gP->SetMarkerStyle(20);
-  gP->SetMarkerSize(0.3);
+  gP->SetMarkerSize(0.7);
   gP->SetMarkerColor(1);
 
   gP->SetLineStyle(4);
-  gP->SetLineWidth(4);
+  gP->SetLineWidth(8);
 
   //gP->SetTitle("Polarization vs. DecayZ; DecayZ [mm]; Polarization");
   gP->SetTitle(title.Data());
@@ -193,19 +193,21 @@ void TH1Style(TH1*h, TString title = "", int c = 1){
 }
 
 void TH1Style1(TH1 *h, Int_t c = 1){
-  h->SetFillColor(c);
-  h->SetFillStyle(3003);
-  //h->SetLineWidth(4);
+
+  //h->SetFillColor(c);
+  //h->SetFillStyle(3003);
+
+  h->SetLineWidth(2);
   h->SetLineColor(c);
   //h->SetMarkerStyle(14);
-  h->SetMarkerColor(1);
-  h->SetMarkerSize(0.5);
-  h->SetMarkerStyle(20);
+  //h->SetMarkerColor(1);
+  //h->SetMarkerSize(0.5);
+  //h->SetMarkerStyle(20);
 
   //h->SetTitleSize(3);
   //gStyle->SetTitleFontSize(0.08);
 
-  h->GetXaxis()->SetNdivisions(505);
+  //h->GetXaxis()->SetNdivisions(505);
   h->GetYaxis()->SetTitleOffset(0.4);
   h->SetTitleSize(0.06);
   h->GetYaxis()->SetTitleSize(0.06);
@@ -229,7 +231,7 @@ void TH2Style(TH2*h, TString title = "", int c = 1){
   //gP->Draw("APL*");
   //h->SetFillColor(c);
   //h->SetFillStyle(3001);
-  h->SetLineColor(c);
+  //h->SetLineColor(c);
   h->SetMarkerColor(1);
   h->SetMarkerSize(0.5);
   h->SetMarkerStyle(20);
@@ -239,7 +241,7 @@ void TH2Style(TH2*h, TString title = "", int c = 1){
   h->GetXaxis()->SetTitleSize(0.06);
   h->GetXaxis()->SetTitleOffset(0.8);
 
-  h->SetTitle(title.Data());
+  //h->SetTitle(title.Data());
 
 }
 
