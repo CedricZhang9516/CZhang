@@ -107,19 +107,19 @@ void TGraphStyle2(TGraphErrors *g1, TString title = ""){
 }
 
 
-void TGraphStyle(TGraph* gP, TString title = ""){
+void TGraphStyle(TGraph* gP, TString title = "Mu N vs.interval; interval [mm]; Mu N"){
 
   //gP->Draw("APL*");
   gP->SetLineColor(1);
-  gP->SetMarkerStyle(20);
-  gP->SetMarkerSize(0.7);
+  //gP->SetMarkerStyle(20);
+  //gP->SetMarkerSize(0.7);
   gP->SetMarkerColor(1);
 
-  gP->SetLineStyle(4);
-  gP->SetLineWidth(8);
+  //gP->SetLineStyle(4);
+  gP->SetLineWidth(3);
 
-  //gP->SetTitle("Polarization vs. DecayZ; DecayZ [mm]; Polarization");
-  gP->SetTitle(title.Data());
+  gP->SetTitle("Mu density vs.interval; interval [mm]; Mu density [/mm]");
+  //gP->SetTitle(title.Data());
   gP->GetYaxis()->SetTitleOffset(0.58);
   gP->GetYaxis()->SetTitleSize(0.06);
   gP->GetXaxis()->SetTitleSize(0.06);
