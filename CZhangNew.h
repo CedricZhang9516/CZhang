@@ -120,7 +120,7 @@ void TGraphStyle(TGraph* gP, TString title = "Mu N vs.interval; interval [mm]; M
 
   //gP->SetTitle("Mu density vs.interval; interval [mm]; Mu density [/mm]");
   //gP->SetTitle(title.Data());
-  gP->GetYaxis()->SetTitleOffset(0.58);
+  gP->GetYaxis()->SetTitleOffset(0.78);
   gP->GetYaxis()->SetTitleSize(0.06);
   gP->GetXaxis()->SetTitleSize(0.06);
   gP->GetXaxis()->SetTitleOffset(0.8);
