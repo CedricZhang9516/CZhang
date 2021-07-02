@@ -112,11 +112,12 @@ void TGraphStyle(TGraph* gP, TString title = "Mu N vs.interval; interval [mm]; M
   //gP->Draw("APL*");
   gP->SetLineColor(1);
   //gP->SetMarkerStyle(20);
-  //gP->SetMarkerSize(0.7);
+  //gP->SetMarkerSize(0.2);
   gP->SetMarkerColor(1);
 
   //gP->SetLineStyle(4);
   gP->SetLineWidth(3);
+  //gP->SetLineWidth(0.5);
 
   //gP->SetTitle("Mu density vs.interval; interval [mm]; Mu density [/mm]");
   //gP->SetTitle(title.Data());
